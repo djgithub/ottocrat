@@ -36,7 +36,7 @@ $USE_RTE = 'true';
 $PORTAL_URL = 'http://vtiger.com/customerportal';
 
 // helpdesk support email id and support name (Example: 'support@vtiger.com' and 'vtiger support')
-$HELPDESK_SUPPORT_EMAIL_ID = 'djjamadade@gmail.com';
+$HELPDESK_SUPPORT_EMAIL_ID = 'dnyandev.mca@gmail.com';
 $HELPDESK_SUPPORT_NAME = 'your-support name';
 $HELPDESK_SUPPORT_EMAIL_REPLY_ID = $HELPDESK_SUPPORT_EMAIL_ID;
 
@@ -48,12 +48,19 @@ $HELPDESK_SUPPORT_EMAIL_REPLY_ID = $HELPDESK_SUPPORT_EMAIL_ID;
       db_password
       db_name
 */
-
+session_start();
 $dbconfig['db_server'] = 'localhost';
 $dbconfig['db_port'] = ':3306';
 $dbconfig['db_username'] = 'root';
-$dbconfig['db_password'] = '';
-$dbconfig['db_name'] = 'vtiger6_3';
+$dbconfig['db_password'] = 'root123';
+/*if(isset($_COOKIE['username']))
+$dbconfig['db_name'] = $_COOKIE['username'];*/
+#print_r($_SESSION);
+#session_destroy();
+if(isset($_SESSION['username']))
+$dbconfig['db_name'] = $_SESSION['username'];
+else
+$dbconfig['db_name'] = 'vtgr1';
 $dbconfig['db_type'] = 'mysqli';
 $dbconfig['db_status'] = 'true';
 
@@ -84,10 +91,10 @@ $dbconfigoption['ssl'] = false;
 
 $host_name = $dbconfig['db_hostname'];
 
-$site_URL = 'http://localhost/vtigercrm/vtigercrm6.3/';
+$site_URL = 'http://localhost/ottocrat/';
 
 // root directory path
-$root_directory = 'C:\wamp\www\vtigercrm\vtigercrm6.3/';
+$root_directory = '/var/www/ottocrat/';
 
 // cache direcory path
 $cache_dir = 'cache/';
@@ -162,7 +169,7 @@ $default_user_is_admin = false;
 $disable_persistent_connections = false;
 
 //Master currency name
-$currency_name = 'India, Rupees';
+$currency_name = 'USA, Dollars';
 
 // default charset
 // default charset default value = 'UTF-8' or 'ISO-8859-1'
@@ -186,7 +193,7 @@ $display_empty_home_blocks = false;
 $disable_stats_tracking = false;
 
 // Generating Unique Application Key
-$application_unique_key = '2c77758081bc13771da06a8d2939f736';
+$application_unique_key = 'd08b4db37aa311fd5c941cf641900239';
 
 // trim descriptions, titles in listviews to this value
 $listview_max_textlength = 40;
