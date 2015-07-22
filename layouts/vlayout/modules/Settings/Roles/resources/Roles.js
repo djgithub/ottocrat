@@ -350,6 +350,24 @@ var Settings_Roles_Js = {
         });
     }
 }
+
+jQuery('#roleaccess').on('click', function(e){
+/*var popupInstance = Vtiger_Popup_Js.getInstance();
+			popupInstance.show('');
+			popupInstance.retrieveSelectedRecords(function(data) {
+//});*/
+var params = {};
+		var imagePath = 'layouts/vlayout/skins/images/sharing_desc.png';
+		var imageHtml = '<span class="imageHolder"><img class="loadinImg" src="'+imagePath+'" /></span>';
+				params.data = imageHtml ;
+				//params.cb = postLoad;
+				//TODO : put this css as attribute of object so that its easy for maintanace
+				params.css = {'width':'50%','text-align':'left','background-color':'transparent','border-width':'0px'};
+				//not showing overlay
+				params.overlayCss = {'opacity':'0.2'};
+				
+                app.showModalWindow(params);
+});
 jQuery(document).ready(function(){
 	Settings_Roles_Js.registerEvents();
 })
