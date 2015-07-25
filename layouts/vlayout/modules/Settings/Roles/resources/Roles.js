@@ -362,7 +362,7 @@ var params = {};
 				params.data = imageHtml ;
 				//params.cb = postLoad;
 				//TODO : put this css as attribute of object so that its easy for maintanace
-				params.css = {'width':'50%','text-align':'left','background-color':'transparent','border-width':'0px'};
+				params.css = {'width':'100%','text-align':'left','background-color':'transparent','border-width':'0px'};
 				//not showing overlay
 				params.overlayCss = {'opacity':'0.2'};
 				

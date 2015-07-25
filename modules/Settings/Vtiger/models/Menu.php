@@ -54,7 +54,8 @@ class Settings_Vtiger_Menu_Model extends Vtiger_Base_Model {
 	 */
 	public static function getAll() {
 		$db = PearDatabase::getInstance();
-		$restrictBlock = array('LBL_MODULE_MANAGER');
+		//theleadrec changes-6	
+		$restrictBlock = array('LBL_MODULE_MANAGER','LBL_INTEGRATION');
 
 		$sql = 'SELECT * FROM '.self::$menusTable. ' WHERE label NOT IN ('.generateQuestionMarks($restrictBlock).')
 				ORDER BY sequence';

@@ -39,18 +39,22 @@ class Emails extends CRMEntity {
 	// This is the list of vtiger_fields that are in the lists.
 	var $list_fields = Array(
 		'Subject' => Array('activity' => 'subject'),
-		'Related to' => Array('seactivityrel' => 'parent_id'),
+		'From' => Array('emaildetails' => 'from_email'),
+		'To' => Array('emaildetails' => 'saved_toid'),
+		/*'Related to' => Array('seactivityrel' => 'parent_id'),*/
 		'Date Sent' => Array('activity' => 'date_start'),
         'Time Sent' => Array('activity' => 'time_start'),
-		'Assigned To' => Array('crmentity', 'smownerid'),
+		/*'Assigned To' => Array('crmentity', 'smownerid'),*/
 		'Access Count' => Array('email_track', 'access_count')
 	);
 	var $list_fields_name = Array(
 		'Subject' => 'subject',
-		'Related to' => 'parent_id',
+		'From' => 'from_email',
+		'To' => 'saved_toid',
+		/*'Related to' => 'parent_id',*/
 		'Date Sent' => 'date_start',
-        'Time Sent' => 'time_start',
-		'Assigned To' => 'assigned_user_id',
+        	'Time Sent' => 'time_start',
+		/*'Assigned To' => 'assigned_user_id',*/
 		'Access Count' => 'access_count'
 	);
 	var $list_link_field = 'subject';

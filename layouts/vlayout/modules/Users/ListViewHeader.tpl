@@ -16,7 +16,7 @@
 	</div>
 	<hr>
     {if $MODULE eq 'Users'}
-        <div>{vtranslate('User Desc', $QUALIFIED_MODULE)}</div>
+        <div>User represent employee of your organization who perform the day-to-day activities using the CRM. <b>Ottocrat</b> features two types of users: Administrator, has access to register new users, assign applications, lock users etc; and User, has limited access and can only use applications assigned by admin.When adding a user you should select the role.Privileges of a user depends upon the role you would assign.You can also set admin privileges; it then,gives access to Settings page.User privileges are not shown.User information cannot be visible to other users.Access privileges of a user also depends upon settings enabled in <b><i>Sharing Access</i></b>.</div>
     {/if}
 	<div class="row-fluid">
 		<span class="span4 btn-toolbar">

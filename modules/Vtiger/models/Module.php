@@ -553,19 +553,22 @@ class Vtiger_Module_Model extends Vtiger_Module {
      * Function that returns related list header fields that will be showed in the Related List View
      * @return <Array> returns related fields list.
      */
-	public function getRelatedListFields() {
-            $entityInstance = CRMEntity::getInstance($this->getName());
-            $list_fields_name = $entityInstance->list_fields_name;
-            $list_fields = $entityInstance->list_fields;
-            $relatedListFields = array();
-            foreach ($list_fields as $key => $fieldInfo) {
-                $columnName = $fieldInfo[1];
-                if(array_key_exists($key, $list_fields_name)){
+	public function getRelatedListFields()
+    {
+        $entityInstance = CRMEntity::getInstance($this->getName());
+        $list_fields_name = $entityInstance->list_fields_name;
+        $list_fields = $entityInstance->list_fields;
+        $relatedListFields = array();
+        foreach ($list_fields as $key => $fieldInfo) {
+            foreach ($fieldInfo as $columnName) {
+                if (array_key_exists($key, $list_fields_name)) {
                     $relatedListFields[$columnName] = $list_fields_name[$key];
                 }
             }
-            return $relatedListFields;
-	}
+
+        }
+        return $relatedListFields;
+    }
 
 	public function getConfigureRelatedListFields(){
 		$showRelatedFieldModel = $this->getSummaryViewFieldsList();
@@ -1203,14 +1206,14 @@ class Vtiger_Module_Model extends Vtiger_Module {
 			);
 		}
 
-      /*  $webformSupportedModule = Settings_Webforms_Module_Model :: getSupportedModulesList();
+        $webformSupportedModule = Settings_Webforms_Module_Model :: getSupportedModulesList();
         if(array_key_exists($this->getName(), $webformSupportedModule)){
             $settingsLinks[] =	array(
 					'linktype' => 'LISTVIEWSETTING',
 					'linklabel' => 'LBL_SETUP_WEBFORMS',
 					'linkurl' => 'index.php?module=Webforms&parent=Settings&view=Edit&sourceModule='.$this->getName(),
 					'linkicon' => '');
-        }*/
+        }
 		return $settingsLinks;
 	}
 

@@ -16,7 +16,7 @@
 	<hr>
     Roles represent the hierarchical position of the individual users (employees) of your organization.
     <ul>
-    <li>It plays a vital role in <a id="globalSearch"><b>controlling record access</b></a>.When sharing access for a module is set to private, a user's role in the role hierarchy determines what records he/she can access.</li>
+    <li>It plays a vital role in <a id="roleaccess"><b>controlling record access</b></a>.When sharing access for a module is set to private, a user's role in the role hierarchy determines what records he/she can access.</li>
     <li>A user can only view own records (i.e., records assigned to that user), and records assigned to users with a lower role.</li>
     <li>Role holds a position in a company (ex:sales manager) and can be assigned to multiple users of same functionality.</li>
     <li>A role can also be assigned to multiple profiles.This can come handy if same person holds two different positions.For instance, 'Rahul' is a Sales manager, but he also participates in support operations; therefore, you could create a role called 'sales and support manager' and assign both support and sales profiles to him.</li>

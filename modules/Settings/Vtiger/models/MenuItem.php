@@ -24,7 +24,7 @@ class Settings_Vtiger_MenuItem_Model extends Vtiger_Base_Model {
 		'index.php?module=Settings&action=OrgSharingDetailView&parenttab=Settings' => 'index.php?module=SharingAccess&parent=Settings&view=Index',
 		'index.php?module=Settings&action=DefaultFieldPermissions&parenttab=Settings' => 'index.php?module=FieldAccess&parent=Settings&view=Index',
 		'index.php?module=Settings&action=ListLoginHistory&parenttab=Settings' => 'index.php?module=LoginHistory&parent=Settings&view=List',
-		/*'index.php?module=Settings&action=ModuleManager&parenttab=Settings' => 'index.php?module=ModuleManager&parent=Settings&view=List',*/
+		'index.php?module=Settings&action=ModuleManager&parenttab=Settings' => 'index.php?module=ModuleManager&parent=Settings&view=List',
 		'index.php?module=PickList&action=PickList&parenttab=Settings' => 'index.php?parent=Settings&module=Picklist&view=Index',
 		'index.php?module=Settings&action=listemailtemplates&parenttab=Settings' => 'index.php?module=Emails&view=ListTemplates',
 		'index.php?module=Settings&action=listwordtemplates&parenttab=Settings' => 'index.php?module=Settings&submodule=ModuleManager&view=WordTemplates',
@@ -252,6 +252,9 @@ class Settings_Vtiger_MenuItem_Model extends Vtiger_Base_Model {
 		$skipMenuItemList = array('LBL_AUDIT_TRAIL', 'LBL_SYSTEM_INFO', 'LBL_PROXY_SETTINGS', 'LBL_DEFAULT_MODULE_VIEW',
 								'LBL_FIELDFORMULAS', 'LBL_FIELDS_ACCESS', 'LBL_MAIL_MERGE', 'NOTIFICATIONSCHEDULERS',
 								'INVENTORYNOTIFICATION', 'ModTracker', 'LBL_WORKFLOW_LIST','LBL_TOOLTIP_MANAGEMENT','Webforms Configuration Editor');
+
+//theleadrec changes-6					
+		#array_push($skipMenuItemList,'LBL_TAX_SETTINGS','LBL_DEFAULT_MODULE_VIEW','INVENTORYTERMSANDCONDITIONS','LBL_CONFIG_EDITOR','ModTracker','VTLIB_LBL_MODULE_MANAGER');
 
 		$db = PearDatabase::getInstance();
 		$sql = 'SELECT * FROM '.self::$itemsTable;
