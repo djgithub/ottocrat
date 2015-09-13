@@ -69,7 +69,7 @@ class Users_Login_Action extends Vtiger_Action_Controller {
 				}
 
 			//header ('Location: index.php?module=Users&parent=Settings&view=SystemSetup');
-			header ('Location: index.php');
+			header ('Location: index.php'); 
 
 			exit();
 		} else {

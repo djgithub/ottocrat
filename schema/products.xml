@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<schema version="0.2">
+
+<table name="vtiger_users">
+		<field name="id" type="I" >
+			<key />
+			<autoincrement />
+		</field>
+		<field name="user_name" type="C" size="255" />
+		<field name="user_password" type="C" size="200" />
+		<field name="user_hash" type="C" size="32" />
+		<field name="cal_color" type="C" size="25">
+			<default value="#E6FAD8" />
+		</field>
+		<field name="first_name" type="C" size="30" />
+		<field name="last_name" type="C" size="30" />
+		<field name="reports_to_id" type="C" size="36" />
+		<field name="is_admin" type="C" size="3">
+			<default value="0" />
+		</field>
+		<field name="currency_id" type="I" size="19">
+			<default value="1" />
+			<notnull />
+		</field>
+		<field name="description" type="X" />
+		<field name="date_entered" type="T">
+			<notnull />
+			<deftimestamp />
+		</field>
+		<field name="date_modified" type="T">
+			<notnull />
+			<deftimestamp />
+		</field>
+		<field name="modified_user_id" type="C" size="36" />
+		<field name="title" type="C" size="50" />
+		<field name="department" type="C" size="50" />
+		<field name="phone_home" type="C" size="50" />
+		<field name="phone_mobile" type="C" size="50" />
+		<field name="phone_work" type="C" size="50" />
+		<field name="phone_other" type="C" size="50" />
+		<field name="phone_fax" type="C" size="50" />
+		<field name="email1" type="C" size="100" />
+		<field name="email2" type="C" size="100" />
+		<field name="secondaryemail" type="C" size="100" />
+		<field name="status" type="C" size="25" />
+		<field name="signature" type="C" size="1000" />
+		<field name="address_street" type="C" size="150" />
+		<field name="address_city" type="C" size="100" />
+		<field name="address_state" type="C" size="100" />
+		<field name="address_country" type="C" size="25" />
+		<field name="address_postalcode" type="C" size="9" />
+		<field name="user_preferences" type="X" />
+		<field name="tz" type="C" size="30" />
+		<field name="holidays" type="C" size="60" />
+		<field name="namedays" type="C" size="60" />
+		<field name="workdays" type="C" size="30" />
+		<field name="weekstart" type="I" size="11" />
+		<field name="date_format" type="C" size="200" />
+		<field name="hour_format" type="C" size="30">
+			<default value="am/pm" />
+		</field>
+		<field name="start_hour" type="C" size="30">
+			<default value="10:00" />
+		</field>
+		<field name="end_hour" type="C" size="30">
+			<default value="23:00" />
+		</field>
+		<field name="activity_view" type="C" size="200">
+			<default value="Today" />
+		</field>
+		<field name="lead_view" type="C" size="200">
+			<default value="Today" />
+		</field>
+		<field name="imagename" type="C" size="250" />
+		<field name="deleted" type="I" size="1">
+			<notnull />
+			<default value="0" />
+		</field>
+		<field name="confirm_password" type="C" size="300" />
+
+		<field name="internal_mailer" type="C" size="3">
+			<notnull />
+			<default value="1" />
+		</field>
+		<field name="reminder_interval" type="C" size="100" />
+		<field name="reminder_next_time" type="C" size="100" />
+		<field name="crypt_type" type="C" size="20">
+			<notnull />
+			<default value="MD5" />
+		</field>
+		<field name="accesskey" type="C" size="36" />
+		<field name="theme" type="C" size="100" />
+		<field name="language" type="C" size="36" />
+		<field name="time_zone" type="C" size="200" />
+		<field name="currency_grouping_pattern" type="C" size="100" />
+		<field name="currency_decimal_separator" type="C" size="2" />
+		<field name="currency_grouping_separator" type="C" size="2" />
+		<field name="currency_symbol_placement" type="C" size="20" />
+
+		<index name="user_user_name_idx">
+			<col>user_name</col>
+		</index>
+		<index name="user_user_password_idx">
+			<col>user_password</col>
+		</index>
+		<opt platform="mysql">Engine=InnoDB</opt>
+	</table>
+</schema>
