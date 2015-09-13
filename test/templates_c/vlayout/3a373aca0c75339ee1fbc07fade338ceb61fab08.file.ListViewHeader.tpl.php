@@ -1,22 +1,20 @@
-<?php /* Smarty version Smarty-3.1.7, created on 2015-07-19 15:30:25
+<?php /* Smarty version Smarty-3.1.7, created on 2015-09-10 17:42:45
          compiled from "C:\wamp\www\vtigercrm\vtigercrm6.3\includes\runtime/../../layouts/vlayout\modules\Settings\Vtiger\ListViewHeader.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:1742055a7a7d416f336-17135873%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1863255f1c115d07fa6-28076144%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '3a373aca0c75339ee1fbc07fade338ceb61fab08' => 
     array (
       0 => 'C:\\wamp\\www\\vtigercrm\\vtigercrm6.3\\includes\\runtime/../../layouts/vlayout\\modules\\Settings\\Vtiger\\ListViewHeader.tpl',
-      1 => 1437319817,
+      1 => 1437319906,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1742055a7a7d416f336-17135873',
+  'nocache_hash' => '1863255f1c115d07fa6-28076144',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.7',
-  'unifunc' => 'content_55a7a7d430ae2',
   'variables' => 
   array (
     'MODULE' => 0,
@@ -25,12 +23,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'LISTVIEW_BASICACTION' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.7',
+  'unifunc' => 'content_55f1c1160321e',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_55a7a7d430ae2')) {function content_55a7a7d430ae2($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_55f1c1160321e')) {function content_55f1c1160321e($_smarty_tpl) {?>
 <div class="container-fluid"><div class="widget_header row-fluid"><h3><?php echo vtranslate($_smarty_tpl->tpl_vars['MODULE']->value,$_smarty_tpl->tpl_vars['QUALIFIED_MODULE']->value);?>
 </h3></div><hr><?php if ($_smarty_tpl->tpl_vars['MODULE']->value=='Groups'){?><div><?php echo vtranslate('Groups Desc',$_smarty_tpl->tpl_vars['QUALIFIED_MODULE']->value);?>
 </div><?php }?><?php if ($_smarty_tpl->tpl_vars['MODULE']->value=='PickListDependency'){?><div><?php echo vtranslate('LBL_PICKLIST_DEPENDENCY_TEXT',$_smarty_tpl->tpl_vars['QUALIFIED_MODULE']->value);?>
-</div><?php }?><?php if ($_smarty_tpl->tpl_vars['MODULE']->value=='Profiles'){?><div>Profiles provide you the fine grained access control to Ottocrat CRM. Profiles can be used to regulate, or completely disable user's access on modules, fields, and other actions (eg.Import).<ul> <li>With profiles you can set the user privileges to delete, create/edit or view data.</li><li>	Like <b><i>Sharing Access</i></b>, profiles also play vital role in ensuring security by limiting the activities on records.Please note that the *settings of the global privileges are always superior to the other privilege settings.</li<li>	Roles are based on profiles.One or more profiles can be linked to Roles.</li><li>	Ottocrat CRM comes with a set of pre-defined profiles(ex: 'Administrator') which you can use and change but not delete.</li></div><?php }?><div class="row-fluid"><span class="span8 btn-toolbar"><?php  $_smarty_tpl->tpl_vars['LISTVIEW_BASICACTION'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['LISTVIEW_BASICACTION']->_loop = false;
+</div><?php }?><?php if ($_smarty_tpl->tpl_vars['MODULE']->value=='Profiles'){?><div>Profiles provide you the fine grained access control to Ottocrat CRM. Profiles can be used to regulate, or completely disable user's access on modules, fields, and other actions (eg.Import).<ul> <li>With profiles you can set the user privileges to delete, create/edit or view data.</li><li>	Like <b><i>Sharing Access</i></b>, profiles also play vital role in ensuring security by limiting the activities on records.Please note that the *settings of the global privileges are always superior to the other privilege settings.</li<li>	Roles are based on profiles.One or more profiles can be linked to Roles.</li><li>	<b>Ottocrat CRM</b> comes with a set of pre-defined profiles(ex: 'Administrator') which you can use and change but not delete.</li></div><?php }?><div class="row-fluid"><span class="span8 btn-toolbar"><?php  $_smarty_tpl->tpl_vars['LISTVIEW_BASICACTION'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['LISTVIEW_BASICACTION']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['LISTVIEW_LINKS']->value['LISTVIEWBASIC']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['LISTVIEW_BASICACTION']->key => $_smarty_tpl->tpl_vars['LISTVIEW_BASICACTION']->value){
 $_smarty_tpl->tpl_vars['LISTVIEW_BASICACTION']->_loop = true;

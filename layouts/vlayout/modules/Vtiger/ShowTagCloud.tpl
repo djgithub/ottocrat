@@ -15,6 +15,7 @@
 		<div class="row-fluid">
 			<span class="span1">&nbsp;</span>
 			<input type="text" class="span10" id="tagRecordText" />
+			<span id="succMsg" class="tagSucc" >Tag added successfully</span>
 		</div>
 		<div class="row-fluid">
 			<div class="row-fluid">

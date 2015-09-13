@@ -344,7 +344,7 @@ class Users extends CRMEntity {
      * @return true if the user is authenticated, false otherwise
      */
     function doLogin($user_password) {
-        global $AUTHCFG;
+        global $AUTHCFG,$adb;
         $usr_name = $this->column_fields["user_name"];
 
         switch (strtoupper($AUTHCFG['authType'])) {
@@ -373,18 +373,24 @@ class Users extends CRMEntity {
             default:
                 $this->log->debug("Using integrated/SQL authentication");
                 $query = "SELECT crypt_type, user_name FROM $this->table_name WHERE user_name=?";
-                $result = $this->db->requirePsSingleResult($query, array($usr_name), false);
+             /*   $result = $this->db->requirePsSingleResult($query, array($usr_name), false);
                 if (empty($result)) {
                     return false;
                 }
                 $crypt_type = $this->db->query_result($result, 0, 'crypt_type');
-				$this->column_fields["user_name"] = $this->db->query_result($result, 0, 'user_name');
+				$this->column_fields["user_name"] = $this->db->query_result($result, 0, 'user_name');*/
                 $encrypted_password = $this->encrypt_password($user_password, $crypt_type);
-                $query = "SELECT 1 from $this->table_name where user_name=? AND user_password=? AND status = ?";
-                $result = $this->db->requirePsSingleResult($query, array($usr_name, $encrypted_password, 'Active'), false);
+  /*             $query = "SELECT 1 from $this->table_name where user_name=? AND user_password=? AND status = ?";
+               $result = $this->db->requirePsSingleResult($query, array($usr_name, $encrypted_password, 'Active'),
+                    false);
+  */               $query = "SELECT 1 from ottocrat.tbl_user where username=? AND password=? AND status = ?";
+                $result = $this->db->requirePsSingleResult($query, array($usr_name, $encrypted_password, 'a'),
+                             false);
+                /*echo "SELECT 1 from ottocrat.tbl_user where username='$usr_name' AND password='$encrypted_password' AND status ='a'";die;*/
                 if (empty($result)) {
                     return false;
                 } else {
+
                     return true;
                 }
                 break;
@@ -422,6 +428,8 @@ class Users extends CRMEntity {
             $this->log->warn("User authentication for $usr_name failed");
             return null;
         }
+
+
 
         // Get the fields for the user
         $query = "SELECT * from $this->table_name where user_name='$usr_name'";

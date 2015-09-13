@@ -1,22 +1,20 @@
-<?php /* Smarty version Smarty-3.1.7, created on 2015-07-19 12:33:08
+<?php /* Smarty version Smarty-3.1.7, created on 2015-09-10 17:13:42
          compiled from "C:\wamp\www\vtigercrm\vtigercrm6.3\includes\runtime/../../layouts/vlayout\modules\Vtiger\MenuBar.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:2269555a7a6d9d0a175-83162576%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1712955f1ba46348f13-65015394%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '05516ab670a51a1e6f2ce060cfe3494e4c78191b' => 
     array (
       0 => 'C:\\wamp\\www\\vtigercrm\\vtigercrm6.3\\includes\\runtime/../../layouts/vlayout\\modules\\Vtiger\\MenuBar.tpl',
-      1 => 1437309085,
+      1 => 1438113704,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2269555a7a6d9d0a175-83162576',
+  'nocache_hash' => '1712955f1ba46348f13-65015394',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.7',
-  'unifunc' => 'content_55a7a6db091b7',
   'variables' => 
   array (
     'MENU_STRUCTURE' => 0,
@@ -55,8 +53,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'VIEW' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.7',
+  'unifunc' => 'content_55f1ba47712ad',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_55a7a6db091b7')) {function content_55a7a6db091b7($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_55f1ba47712ad')) {function content_55f1ba47712ad($_smarty_tpl) {?>
 <?php $_smarty_tpl->tpl_vars["topMenus"] = new Smarty_variable($_smarty_tpl->tpl_vars['MENU_STRUCTURE']->value->getTop(), null, 0);?><?php $_smarty_tpl->tpl_vars["moreMenus"] = new Smarty_variable($_smarty_tpl->tpl_vars['MENU_STRUCTURE']->value->getMore(), null, 0);?><?php $_smarty_tpl->tpl_vars['NUMBER_OF_PARENT_TABS'] = new Smarty_variable(count(array_keys($_smarty_tpl->tpl_vars['moreMenus']->value)), null, 0);?><div class="navbar" id="topMenus" style="overflow: hidden;height:40px;"><div class="navbar-inner" id="nav-inner"><div class="menuBar row-fluid"><div class="span9"><ul class="nav modulesList" id="largeNav"><li class="tabs"><a class="alignMiddle <?php if ($_smarty_tpl->tpl_vars['MODULE']->value=='Home'){?> selected <?php }?>" href="<?php echo $_smarty_tpl->tpl_vars['HOME_MODULE_MODEL']->value->getDefaultUrl();?>
 "><img src="<?php echo vimage_path('home.png');?>
 " alt="<?php echo vtranslate('LBL_HOME',$_smarty_tpl->tpl_vars['moduleName']->value);?>

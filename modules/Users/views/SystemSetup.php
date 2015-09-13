@@ -11,6 +11,7 @@
 class Users_SystemSetup_View extends Vtiger_Index_View {
 	
 	public function preProcess(Vtiger_Request $request) {
+
 		return true;
 	}
 	
@@ -19,7 +20,7 @@ class Users_SystemSetup_View extends Vtiger_Index_View {
 		$viewer = $this->getViewer($request);
 		$userModel = Users_Record_Model::getCurrentUserModel();
 		$isFirstUser = Users_CRMSetup::isFirstUser($userModel);
-		
+
 		if($isFirstUser) {
 			$viewer->assign('IS_FIRST_USER', $isFirstUser);
 			$viewer->assign('PACKAGES_LIST', Users_CRMSetup::getPackagesList());

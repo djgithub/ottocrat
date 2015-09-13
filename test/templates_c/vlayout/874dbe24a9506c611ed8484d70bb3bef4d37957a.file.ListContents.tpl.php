@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.7, created on 2015-07-16 13:06:42
+<?php /* Smarty version Smarty-3.1.7, created on 2015-09-12 17:39:52
          compiled from "C:\wamp\www\vtigercrm\vtigercrm6.3\includes\runtime/../../layouts/vlayout\modules\Settings\ModuleManager\ListContents.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:2095555a7ac62abfa54-13963523%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:463455f46368e41e73-74702067%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2095555a7ac62abfa54-13963523',
+  'nocache_hash' => '463455f46368e41e73-74702067',
   'function' => 
   array (
   ),
@@ -30,9 +30,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.7',
-  'unifunc' => 'content_55a7ac6305cad',
+  'unifunc' => 'content_55f4636987ffe',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_55a7ac6305cad')) {function content_55a7ac6305cad($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_55f4636987ffe')) {function content_55f4636987ffe($_smarty_tpl) {?>
 <div class="container-fluid" id="moduleManagerContents"><div class="widget_header row-fluid"><div class="span6"><h3><?php echo vtranslate('LBL_MODULE_MANAGER',$_smarty_tpl->tpl_vars['QUALIFIED_MODULE']->value);?>
 </h3></div><div class="span6"><span class="btn-toolbar pull-right"><span class="btn-group"><button class="btn" type="button" onclick='window.location.href="index.php?module=ExtensionStore&parent=Settings&view=ExtensionStore"'><strong><?php echo vtranslate('LBL_EXTENSION_STORE',$_smarty_tpl->tpl_vars['QUALIFIED_MODULE']->value);?>
 </strong></button></span></span></div></div><hr><div class="contents"><?php $_smarty_tpl->tpl_vars['COUNTER'] = new Smarty_variable(0, null, 0);?><table class="table table-bordered equalSplit"><tr><?php  $_smarty_tpl->tpl_vars['MODULE_MODEL'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['MODULE_MODEL']->_loop = false;

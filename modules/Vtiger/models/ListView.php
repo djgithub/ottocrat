@@ -31,7 +31,7 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 	public function getSideBarLinks($linkParams) {
 		$linkTypes = array('SIDEBARLINK', 'SIDEBARWIDGET');
 		$moduleLinks = $this->getModule()->getSideBarLinks($linkParams);
-
+		$currentUser = Users_Record_Model::getCurrentUserModel();
 		$listLinkTypes = array('LISTVIEWSIDEBARLINK', 'LISTVIEWSIDEBARWIDGET');
 		$listLinks = Vtiger_Link_Model::getAllByType($this->getModule()->getId(), $listLinkTypes);
 
@@ -40,13 +40,26 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 				$moduleLinks['SIDEBARLINK'][] = $link;
 			}
 		}
+		/* new code added for cloudtag*/
+		if($currentUser->getTagCloudStatus()) {
+			$tagWidget = array(
+				'linktype' => 'LISTVIEWSIDEBARWIDGET',
+				'linklabel' => 'LBL_TAG_CLOUD',
+				'linkurl' => 'module='.$this->getModule()->getName().'&view=ShowTagCloud&mode=showTags',
+				'linkicon' => '',
+			);
+			$linkModel = Vtiger_Link_Model::getInstanceFromValues($tagWidget);
+			if($listLinks['LISTVIEWSIDEBARWIDGET']) array_push($listLinks['LISTVIEWSIDEBARWIDGET'], $linkModel);
+			else $listLinks['LISTVIEWSIDEBARWIDGET'][] = $linkModel;
+		}
 
 		if($listLinks['LISTVIEWSIDEBARWIDGET']) {
 			foreach($listLinks['LISTVIEWSIDEBARWIDGET'] as $link) {
+				$link->linkurl = $link->linkurl.'&record=all&source_module='.$this->getModule()->getName();
 				$moduleLinks['SIDEBARWIDGET'][] = $link;
 			}
 		}
-
+	#	print_r($moduleLinks);
 		return $moduleLinks;
 	}
 

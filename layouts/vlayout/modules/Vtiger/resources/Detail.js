@@ -1484,9 +1484,18 @@ jQuery.Class("Vtiger_Detail_Js",{
 					function(data) {
 						thisInstance.addTagsToList(data);
 						textElement.val('');
+						thisInstance.showAddSuccesccMsg();
 					}
 				);
 		});
+	},
+	showAddSuccesccMsg: function()
+	{
+		var msg = jQuery('#succMsg');
+		msg.show();
+		setTimeout(function(){
+			msg.hide();
+		}, 1500);
 	},
 	registerRemovePromptEventForTagCloud : function(data) {
 		jQuery('#tagRecordText').on('focus',function(e){

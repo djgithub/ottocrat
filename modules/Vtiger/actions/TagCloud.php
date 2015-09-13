@@ -14,6 +14,7 @@ class Vtiger_TagCloud_Action extends Vtiger_Action_Controller {
 		parent::__construct();
 		$this->exposeMethod('save');
 		$this->exposeMethod('delete');
+		$this->exposeMethod('getTags');
 	}
 
 	function checkPermission(Vtiger_Request $request) {
@@ -72,12 +73,15 @@ class Vtiger_TagCloud_Action extends Vtiger_Action_Controller {
 	 * @param Vtiger_Request $request
 	 */
 	public function getTags(Vtiger_Request $request) {
+
 		$currentUser = Users_Record_Model::getCurrentUserModel();
 		$record = $request->get('record');
 		$module = $request->getModule();
-		$tags = Vtiger_Tag_Model::getAll($currentUser->id, $module, $record);
 
+		$tags = Vtiger_Tag_Model::getAll($currentUser->id, $module, $record);
+		#print_r($tags);
 		$response = new Vtiger_Response();
+		$response->setResult($tags);
 		$response->emit($tags);
 	}
 }

@@ -444,6 +444,7 @@ class freetag {
 			AND tag = ? ";
 			
 		array_push($params, $object_id, $normalized_tag);
+
 		$rs = $adb->pquery($sql, $params) or die("Syntax Error: $sql");
 		if($rs->fields['count'] > 0) {
 			return true;
@@ -460,6 +461,7 @@ class freetag {
 			$tag_id = $adb->getUniqueId('vtiger_freetags');
 			$sql = "INSERT INTO ${prefix}freetags (id, tag, raw_tag) VALUES (?,?,?)";
 			$params = array($tag_id, $normalized_tag, $tag);
+
 			$rs = $adb->pquery($sql, $params) or die("Syntax Error: $sql");
 			
 		}
@@ -468,8 +470,24 @@ class freetag {
 		}
 		$sql = "INSERT INTO ${prefix}freetagged_objects
 			(tag_id, tagger_id, object_id, tagged_on, module) VALUES (?,?,?, NOW(),?)";
-		$params = array($tag_id, $tagger_id, $object_id, $module);
-		$rs = $adb->pquery($sql, $params) or die("Syntax error: $sql");
+		$pos = strpos($object_id, ',');
+		if($pos===false) {
+			$params = array($tag_id, $tagger_id, $object_id, $module);
+			$rs = $adb->pquery($sql, $params) or die("Syntax error: $sql");
+		}
+		else{
+			$recarr=explode(',',$object_id);
+			$cnt=1;
+			foreach($recarr as $recid){
+
+				$params = array($tag_id, $tagger_id, $recid, $module);
+				$rs = $adb->pquery($sql, $params) or die("Syntax error: $sql");
+				unset($params);
+				}//foreach
+			}//else
+
+
+
 
 		return true;
 	}
@@ -963,8 +981,8 @@ class freetag {
 		}
 
 		if(isset($obj_id) && $obj_id > 0) {
-  			$tagger_sql .= " AND object_id = ?";
-			array_push($params, $obj_id);
+  			$tagger_sql .= " AND object_id in($obj_id)";
+			#array_push($params, $obj_id);
 		} else {
 			$tagger_sql .= "";
 		}

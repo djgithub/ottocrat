@@ -23,12 +23,24 @@ class Users_Login_Action extends Vtiger_Action_Controller {
 		$username = $request->get('username');
 		$password = $request->get('password');
 
+		#Vtiger_Session::destroy();
+
+			if($_REQUEST['dbcreation']=='yes') //to create tables of product
+		{
+			$dbcre = CRMEntity::getInstance('DbCreate');
+			$dbcre->column_fields['user_name'] = $username;
+			$dbcre->DbCreateProcess();
+			exit;
+		}
+
 		$user = CRMEntity::getInstance('Users');
 		$user->column_fields['user_name'] = $username;
-
 		if ($user->doLogin($password)) {
 			session_regenerate_id(true); // to overcome session id reuse.
+			global $adb;
+			$adb->resetSettings('mysqli', 'localhost', $username, $username, 'pass123');
 
+			$_SESSION['username']=$username;
 			$userid = $user->retrieve_user_id($username);
 			Vtiger_Session::set('AUTHUSERID', $userid);
 
@@ -51,12 +63,14 @@ class Users_Login_Action extends Vtiger_Action_Controller {
 			$moduleModel = Users_Module_Model::getInstance('Users');
 			$moduleModel->saveLoginHistory($user->column_fields['user_name']);
 			//End
-            
+
               if(isset($_SESSION['return_params'])){ 
 					$return_params = $_SESSION['return_params'];
 				}
 
-			header ('Location: index.php?module=Users&parent=Settings&view=SystemSetup');
+			//header ('Location: index.php?module=Users&parent=Settings&view=SystemSetup');
+			header ('Location: index.php');
+
 			exit();
 		} else {
 			header ('Location: index.php?module=Users&parent=Settings&view=Login&error=1');

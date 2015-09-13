@@ -52,15 +52,18 @@ session_start();
 $dbconfig['db_server'] = 'localhost';
 $dbconfig['db_port'] = ':3306';
 $dbconfig['db_username'] = 'root';
-$dbconfig['db_password'] = 'root123';
+$dbconfig['db_password'] = '';
 /*if(isset($_COOKIE['username']))
 $dbconfig['db_name'] = $_COOKIE['username'];*/
 #print_r($_SESSION);
-#session_destroy();
-if(isset($_SESSION['username']))
+
+if(isset($_SESSION['username'])){
+$dbconfig['db_username'] =$_SESSION['username'];
 $dbconfig['db_name'] = $_SESSION['username'];
+$dbconfig['db_password'] = 'pass123';
+}
 else
-$dbconfig['db_name'] = 'vtgr1';
+$dbconfig['db_name'] = 'vtiger6_3';
 $dbconfig['db_type'] = 'mysqli';
 $dbconfig['db_status'] = 'true';
 
@@ -78,7 +81,7 @@ $dbconfigoption['persistent'] = true;
 $dbconfigoption['autofree'] = false;
 
 // debug default value = 0
-$dbconfigoption['debug'] = 0;
+$dbconfigoption['debug'] = 1;
 
 // seqname_format default value = '%s_seq'
 $dbconfigoption['seqname_format'] = '%s_seq';
@@ -91,11 +94,11 @@ $dbconfigoption['ssl'] = false;
 
 $host_name = $dbconfig['db_hostname'];
 
-$site_URL = 'http://localhost/ottocrat/';
+$site_URL = 'http://localhost/vtigercrm/vtigercrm6.3/';
 
 // root directory path
-$root_directory = '/var/www/ottocrat/';
-
+$root_directory = 'C:/wamp/www/vtigercrm/vtigercrm6.3/';
+$_SESSION['ROOT_DIR'] = $root_directory;
 // cache direcory path
 $cache_dir = 'cache/';
 

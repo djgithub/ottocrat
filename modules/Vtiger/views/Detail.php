@@ -110,7 +110,7 @@ class Vtiger_Detail_View extends Vtiger_Index_View {
 		$linkModels = $this->record->getSideBarLinks($linkParams);
 		$viewer->assign('QUICK_LINKS', $linkModels);
         $viewer->assign('MODULE_NAME', $moduleName);
-
+		print_r($quickLinkModels);
 		$currentUserModel = Users_Record_Model::getCurrentUserModel();
 		$viewer->assign('DEFAULT_RECORD_VIEW', $currentUserModel->get('default_record_view'));
 

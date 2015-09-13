@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.7, created on 2015-07-16 15:35:11
+<?php /* Smarty version Smarty-3.1.7, created on 2015-09-10 17:13:34
          compiled from "C:\wamp\www\vtigercrm\vtigercrm6.3\includes\runtime/../../layouts/vlayout\modules\Users\Login.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:1071055a7cf2f994c48-56369394%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:2792255f1ba3e711a30-48327966%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1071055a7cf2f994c48-56369394',
+  'nocache_hash' => '2792255f1ba3e711a30-48327966',
   'function' => 
   array (
   ),
@@ -23,9 +23,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.7',
-  'unifunc' => 'content_55a7cf2fbb7da',
+  'unifunc' => 'content_55f1ba3e9b7e7',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_55a7cf2fbb7da')) {function content_55a7cf2fbb7da($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_55f1ba3e9b7e7')) {function content_55f1ba3e9b7e7($_smarty_tpl) {?>
 
 <?php $_smarty_tpl->tpl_vars["_DefaultLoginTemplate"] = new Smarty_variable(vtemplate_path('Login.Default.tpl','Users'), null, 0);?>
 <?php $_smarty_tpl->tpl_vars["_CustomLoginTemplate"] = new Smarty_variable(vtemplate_path('Login.Custom.tpl','Users'), null, 0);?>

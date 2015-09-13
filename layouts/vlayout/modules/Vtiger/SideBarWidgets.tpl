@@ -12,6 +12,7 @@
 {strip}
 <div class="quickWidgetContainer accordion">
 	{assign var=val value=1}
+	{*$QUICK_LINKS|@print_r*}
 	{foreach item=SIDEBARWIDGET key=index from=$QUICK_LINKS['SIDEBARWIDGET']}
 		<div class="quickWidget">
 			<div class="accordion-heading accordion-toggle quickWidgetHeader" data-target="#{$MODULE}_sideBar_{Vtiger_Util_Helper::replaceSpaceWithUnderScores($SIDEBARWIDGET->getLabel())}"

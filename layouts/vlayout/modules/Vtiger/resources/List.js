@@ -1815,6 +1815,233 @@ jQuery.Class("Vtiger_List_Js",{
 			jQuery('.pageNumbersText').html("");
 		}
 	},
+/* start of functions for cloudTagwidget*/
+	getRecordId : function(){
+		return jQuery('#recordId').val();
+	},
+	registerEnterClickEventForTagRecord : function() {
+		jQuery('#tagRecordText').keypress(function(e) {
+			if(e.which == 13) {
+				jQuery('#tagRecord').trigger('click');
+			}
+		});
+	},
+	checkTagExists : function(tagText) {
+		var tagsArray = tagText.split(' ');
+		for(var i=0;i<tagsArray.length;i++){
+			var tagElement = jQuery('#tagsList').find("[data-tagname='"+tagsArray[i]+"']");
+			if(tagElement.length > 0){
+				tagsArray.splice(i,1);
+				i--;
+			}
+		}
+		var tagName = tagsArray.join(' ');
+		if(tagName == ''){
+			return true;
+		} else {
+			return tagName;
+		}
+
+	},
+
+	addTagsToList : function(data) {
+
+		for(var key in data.result[1]){
+			var tagId = data.result[1][key];
+			var tagElement = jQuery('#tagsList').find("[data-tagid='"+tagId+"']");
+			if(tagElement.length == 0){
+				jQuery('#tagsList').prepend('<div class="tag row-fluid span11 marginLeftZero" data-tagname="'+key+'" data-tagid="'+tagId+'"><span class="tagName textOverflowEllipsis span11 cursorPointer"><a>'+key+'</a></span><span class="pull-right cursorPointer deleteTag">x</span></div>');
+			}
+		}
+	},
+
+	checkTagMaxLengthExceeds : function(tagText) {
+		var tagsArray = tagText.split(' ');
+		var maxTagLength = jQuery('#maxTagLength').val();
+
+		for(var i=0;i<tagsArray.length;i++){
+			if(tagsArray[i].length > parseInt(maxTagLength)) {
+				return true;
+			}
+		}
+		return false;
+	},
+
+	registerClickEventForAddingTagRecord : function() {
+		var thisInstance = this;
+		jQuery('#tagRecord').on('click',function(){
+			var textElement = jQuery('#tagRecordText');
+			var tagText = textElement.val();
+			if(tagText == ''){
+				textElement.validationEngine('showPrompt', app.vtranslate('JS_PLEASE_ENTER_A_TAG') , 'error','bottomLeft',true);
+				return;
+			}
+			var maxLengthExceeds = thisInstance.checkTagMaxLengthExceeds(tagText);
+			if(maxLengthExceeds == true){
+				var maxTagLenth = jQuery('#maxTagLength').val();
+				textElement.validationEngine('showPrompt', app.vtranslate('JS_MAX_TAG_LENGTH_EXCEEDS')+' '+maxTagLenth, 'error','bottomLeft',true);
+				return;
+			}
+			var tagExistResult = thisInstance.checkTagExists(tagText);
+			if(tagExistResult == true){
+				textElement.validationEngine('showPrompt', app.vtranslate('JS_TAG_NAME_ALREADY_EXIST') , 'error','bottomLeft',true);
+				return;
+			} else {
+				tagText = tagExistResult;
+			}
+
+			var recIds = jQuery('.listViewEntriesCheckBox').map(function(i,el){
+				if(jQuery(el).is(':checked')){
+					return jQuery(el).val()
+				}
+			}).get();
+			if(recIds == ''){
+				//textElement.validationEngine('showPrompt', app.vtranslate('Please select atleast a record') ,
+				// 'error','bottomLeft',true);
+				alert('Please select atleast a record');
+				return;
+			}
+			var params = {
+				module : app.getModuleName(),
+				action : 'TagCloud',
+				mode : 'save',
+				tagname : tagText,
+				record : recIds.toString()
+			}; //console.log(params);
+			AppConnector.request(params).then(
+				function(data) {
+					thisInstance.addTagsToList(data);
+					textElement.val('');
+				thisInstance.showAddSuccesccMsg();
+				}
+			);
+		});
+	},
+	showAddSuccesccMsg: function()
+	{
+		var msg = jQuery('#succMsg');
+		msg.show();
+		setTimeout(function(){
+			msg.hide();
+		}, 1500);
+	},
+	registerRemovePromptEventForTagCloud : function(data) {
+		jQuery('#tagRecordText').on('focus',function(e){
+			var errorPrompt = jQuery('.formError',data);
+			if(errorPrompt.length > 0) {
+				errorPrompt.remove();
+			}
+		});
+	},
+
+	registerDeleteEventForTag : function(data) {
+		var thisInstance = this;
+
+		jQuery(data).on('click','.deleteTag',function(e){
+			var tag = jQuery(e.currentTarget).closest('.tag');
+			var tagId = tag.data('tagid');
+			var recIds = jQuery('.listViewEntriesCheckBox').map(function(i,el){
+				if(jQuery(el).is(':checked')){
+					return jQuery(el).val()
+				}
+			}).get();
+			if(recIds == ''){
+				alert('Please select record ');
+				return;
+			}
+			tag.fadeOut('slow', function() {
+				tag.remove();
+			});
+			var params = {
+				module : app.getModuleName(),
+				action : 'TagCloud',
+				mode : 'delete',
+				tag_id : tagId,
+				record : recIds.toString()
+			}
+			AppConnector.request(params).then(
+				function(data) {
+				});
+		});
+	},
+	registerTagClickEvent : function(data){
+		var thisInstance = this;
+		jQuery(data).on('click','.tagName',function(e) {
+			var tagElement = jQuery(e.currentTarget);
+			var tagId = tagElement.closest('.tag').data('tagid');
+			var params = {
+				'module' : app.getModuleName(),
+				'view' : 'TagCloudSearchAjax',
+				'tag_id' : tagId,
+				'tag_name' : tagElement.find('a').text()
+			}
+			AppConnector.request(params).then(
+				function(data) {
+					var params = {
+						'data' : data,
+						'css'  : {'min-width' : '40%'}
+					}
+					app.showModalWindow(params);
+					thisInstance.registerChangeEventForModulesList();
+				}
+			)
+		});
+	},
+
+	registerChangeEventForModulesList : function() {
+		jQuery('#tagSearchModulesList').on('change',function(e) {
+			var modulesSelectElement = jQuery(e.currentTarget);
+			if(modulesSelectElement.val() == 'all'){
+				jQuery('[name="tagSearchModuleResults"]').removeClass('hide');
+			} else{
+				jQuery('[name="tagSearchModuleResults"]').removeClass('hide');
+				var selectedOptionValue = modulesSelectElement.val();
+				jQuery('[name="tagSearchModuleResults"]').filter(':not(#'+selectedOptionValue+')').addClass('hide');
+			}
+		});
+	},
+	registerRecordClickEvent :function(data){
+		var thisInstance = this;
+
+		jQuery('.listViewEntriesCheckBox').change(function() {
+			var recIds = jQuery('.listViewEntriesCheckBox').map(function (i, el) {
+				if (jQuery(el).is(':checked')) {
+					return jQuery(el).val()
+				}
+			}).get();
+
+			var tag=jQuery('.tag');
+				tag.remove();
+
+			var params = {
+				module: app.getModuleName(),
+				action: 'TagCloud',
+				mode: 'getTags',
+				record: recIds.toString()
+			}; //console.log(params);
+			AppConnector.request(params).then(
+				function (data) {
+
+					thisInstance.addTagsToList(data);
+					}
+			);
+		});
+	},
+
+	registerPostTagCloudWidgetLoad : function() {
+		var thisInstance = this;
+		app.getContentsContainer().on('Vtiger.Widget.Load.LBL_TAG_CLOUD',function(e,data){
+			thisInstance.registerClickEventForAddingTagRecord();
+			thisInstance.registerEnterClickEventForTagRecord();
+			thisInstance.registerDeleteEventForTag(data);
+			thisInstance.registerRemovePromptEventForTagCloud(data);
+			thisInstance.registerTagClickEvent(data);
+			thisInstance.registerRecordClickEvent(data);
+		});
+	},
+
+
+	/* end of  functions for cloudTagwidget*/
 
 	registerEvents : function(){
 
@@ -1828,7 +2055,7 @@ jQuery.Class("Vtiger_List_Js",{
 		this.registerHeadersClickEvent();
 		this.registerMassActionSubmitEvent();
 		this.registerEventForAlphabetSearch();
-
+		this.registerPostTagCloudWidgetLoad();
 		this.changeCustomFilterElementView();
 		this.registerChangeCustomFilterEvent();
 		this.registerCreateFilterClickEvent();
