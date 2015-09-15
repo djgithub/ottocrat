@@ -109,7 +109,7 @@ jQuery.Class("ExtensionStore_ExtensionStore_Js", {}, {
                              '<span id="show" class="icon icon-chevron-down hide"></span>'+
                         '</button>'+
                     '</span>';
-      //  jQuery('.dashboardHeading').find('.btn-toolbar').append(toggleHtml);
+        jQuery('.dashboardHeading').find('.btn-toolbar').append(toggleHtml);
     },
     
     registerEvents: function() {
@@ -140,7 +140,7 @@ jQuery.Class("ExtensionStore_ExtensionStore_Js", {}, {
             jQuery('.togglePromotion').find('.icon-chevron-down').removeClass('hide');
             jQuery('.togglePromotion').addClass('down').removeClass('up');
         }
-       // thisInstance.registerEventsForTogglePromotion();
+        thisInstance.registerEventsForTogglePromotion();
     }
 });
 

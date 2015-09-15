@@ -37,10 +37,13 @@ class Users_Login_Action extends Vtiger_Action_Controller {
 		$user->column_fields['user_name'] = $username;
 		if ($user->doLogin($password)) {
 			session_regenerate_id(true); // to overcome session id reuse.
-			global $adb;
-			$adb->resetSettings('mysqli', 'localhost', $username, $username, 'pass123');
+			if($username!=='admin') {
+				global $adb;
+				$db_name = $user->column_fields["user_name"];
+				$adb->resetSettings('mysqli', 'localhost', $db_name, $db_name, 'pass123');
 
-			$_SESSION['username']=$username;
+				$_SESSION['username'] = $db_name;
+			}
 			$userid = $user->retrieve_user_id($username);
 			Vtiger_Session::set('AUTHUSERID', $userid);
 
@@ -69,7 +72,7 @@ class Users_Login_Action extends Vtiger_Action_Controller {
 				}
 
 			//header ('Location: index.php?module=Users&parent=Settings&view=SystemSetup');
-			header ('Location: index.php'); 
+			header ('Location: index.php');
 
 			exit();
 		} else {

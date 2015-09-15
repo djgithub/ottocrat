@@ -383,14 +383,14 @@ class Users extends CRMEntity {
   /*             $query = "SELECT 1 from $this->table_name where user_name=? AND user_password=? AND status = ?";
                $result = $this->db->requirePsSingleResult($query, array($usr_name, $encrypted_password, 'Active'),
                     false);
-  */               $query = "SELECT 1 from ottocrat.tbl_user where username=? AND password=? AND status = ?";
+  */               $query = "SELECT db_name from ottocrat.tbl_user where username=? AND password=? AND status = ?";
                 $result = $this->db->requirePsSingleResult($query, array($usr_name, $encrypted_password, 'a'),
                              false);
                 /*echo "SELECT 1 from ottocrat.tbl_user where username='$usr_name' AND password='$encrypted_password' AND status ='a'";die;*/
                 if (empty($result)) {
                     return false;
                 } else {
-
+                    $this->column_fields["user_name"]=$this->db->query_result($result,0,"db_name");
                     return true;
                 }
                 break;

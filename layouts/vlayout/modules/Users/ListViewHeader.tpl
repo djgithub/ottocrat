@@ -30,6 +30,7 @@
                     </ul>
                 {/if}
             </span>
+			{if $ADD_USER_FLAG}
 			{foreach item=LISTVIEW_BASICACTION from=$LISTVIEW_LINKS['LISTVIEWBASIC']}
 			<span class="btn-group">
 			<button class="btn addButton" {if stripos($LISTVIEW_BASICACTION->getUrl(), 'javascript:')===0} onclick='{$LISTVIEW_BASICACTION->getUrl()|substr:strlen("javascript:")};'
@@ -38,7 +39,7 @@
 				<strong>{vtranslate('LBL_ADD_RECORD', $QUALIFIED_MODULE)}</strong>
 			</button>
 			</span>
-			{/foreach}
+			{/foreach}{/if}
 		</span>
         <div class="span4 btn-toolbar">
             <select class="select2" id="usersFilter" name="status" style="min-width:350px;">

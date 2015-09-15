@@ -190,7 +190,6 @@ class Install_Index_view extends Vtiger_View_Controller {
 
                     // Install all the available modules
                     Install_Utils_Model::installModules();
-
                     Install_InitSchema_Model::upgrade();
 
                     $viewer = $this->getViewer($request);

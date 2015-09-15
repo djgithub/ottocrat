@@ -29,10 +29,15 @@ class DbCreate extends CRMEntity
         $password = "pass123";
 
         if ($database != '') {
+            $adb->disconnect();
             $adb->resetSettings('mysqli', 'localhost', $database, $database, $password);
            // $adb->query('SET NAMES utf8');
             Install_InitSchema_Model::initialize();
-            $adb->createTables("schema/schema.xml"); echo 'hiiiii';
+            // Install all the available modules
+            Install_Utils_Model::installModules();
+
+        #    Install_InitSchema_Model::upgrade();
+          #  $adb->createTables("schema/DatabaseSchema.xml"); echo 'hiiiii';
         }
 
     }

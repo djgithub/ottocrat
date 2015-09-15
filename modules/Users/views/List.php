@@ -45,6 +45,7 @@ class Users_List_View extends Settings_Vtiger_List_View {
 		$pageNumber = $request->get('page');
 		$orderBy = $request->get('orderby');
 		$sortOrder = $request->get('sortorder');
+		$add_user_flg=false;
 		if($sortOrder == "ASC"){
 			$nextSortOrder = "DESC";
 			$sortImage = "icon-chevron-down";
@@ -52,6 +53,23 @@ class Users_List_View extends Settings_Vtiger_List_View {
 			$nextSortOrder = "ASC";
 			$sortImage = "icon-chevron-up";
 		}
+		global $adb;
+		$username=$_SESSION['username'];
+		$userQuery = "SELECT users FROM ottocrat.tbl_user u inner join ottocrat.tbl_packagemaster p on u.package_id=p.package_id  WHERE username='$username'";
+		$adb->checkConnection();
+		$adb->database->SetFetchMode(ADODB_FETCH_ASSOC);
+		$userResult = $adb->pquery($userQuery, array());
+		$maxuser_cnt = $adb->query_result($userResult,0,"users");
+		$usercntQuery = "SELECT count(*) as usercnt  FROM vtiger_users";
+
+		$adb->database->SetFetchMode(ADODB_FETCH_ASSOC);
+		$usercntResult = $adb->pquery($usercntQuery, array());
+		$user_cnt = $adb->query_result($usercntResult,0,"usercnt");
+		if($maxuser_cnt>$user_cnt || $maxuser_cnt==0)
+			$add_user_flg=true;
+
+
+		$viewer->assign('ADD_USER_FLAG', $add_user_flg);
 
 		if(empty ($pageNumber)){
 			$pageNumber = '1';
@@ -100,6 +118,7 @@ class Users_List_View extends Settings_Vtiger_List_View {
 		if(!$this->listViewLinks){
 			$this->listViewLinks = $listViewModel->getListViewLinks($linkParams);
 		}
+
 		$viewer->assign('LISTVIEW_LINKS', $this->listViewLinks);
 
 		$viewer->assign('LISTVIEW_MASSACTIONS', $linkModels['LISTVIEWMASSACTION']);

@@ -499,14 +499,14 @@ class DefaultDataPopulator extends CRMEntity {
 		//Email Details -- START
 		//Block21 -- Start
 
-		$this->db->query("insert into vtiger_field values (10," . $this->db->getUniqueID("vtiger_field") . ",'date_start','vtiger_activity',1,'6','date_start','Date & Time Sent',1,0,'',100,1,21,1,'DT~M~time_start~Time Start',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (10," . $this->db->getUniqueID("vtiger_field") . ",'date_start','vtiger_activity',1,'6','date_start','Date',1,0,'',100,1,21,1,'DT~M~time_start~Time Start',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (10," . $this->db->getUniqueID("vtiger_field") . ",'semodule','vtiger_activity',1,'2','parent_type','Sales Enity Module',1,0,'',100,2,21,3,'',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (10," . $this->db->getUniqueID("vtiger_field") . ",'activitytype','vtiger_activity',1,'2','activitytype','Activtiy Type',1,0,'',100,3,21,3,'V~O',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (10," . $this->db->getUniqueID("vtiger_field") . ",'smownerid','vtiger_crmentity',1,'53','assigned_user_id','Assigned To',1,0,'',100,5,21,1,'V~M',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (10," . $this->db->getUniqueID("vtiger_field") . ",'subject','vtiger_activity',1,'2','subject','Subject',1,0,'',100,1,23,1,'V~M',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (10," . $this->db->getUniqueID("vtiger_field") . ",'name','vtiger_attachments',1,'61','filename','Attachment',1,0,'',100,2,23,1,'V~O',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (10," . $this->db->getUniqueID("vtiger_field") . ",'description','vtiger_crmentity',1,'19','description','Description',1,0,'',100,1,24,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (10," . $this->db->getUniqueID("vtiger_field") . ",'time_start','vtiger_activity',1,'2','time_start','Time Start',1,0,'',100,9,23,1,'T~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (10," . $this->db->getUniqueID("vtiger_field") . ",'time_start','vtiger_activity',1,'2','time_start','Time',1,0,'',100,9,23,1,'T~O',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (10," . $this->db->getUniqueID("vtiger_field") . ",'createdtime','vtiger_crmentity',1,'70','createdtime','Created Time',1,0,'',100,10,22,1,'DT~O',3,null,'BAS',0)");
 		$this->db->query("insert into vtiger_field values (10," . $this->db->getUniqueID("vtiger_field") . ",'modifiedtime','vtiger_crmentity',1,'70','modifiedtime','Modified Time',1,0,'',100,11,21,2,'DT~O',3,null,'BAS',0)");
 		$this->db->query("INSERT INTO vtiger_field VALUES (10," . $this->db->getUniqueID("vtiger_field") . ", 'access_count', 'vtiger_email_track', '1', '25', 'access_count', 'Access Count', '1', '0', '0', '100', '6', '21', '3', 'V~O', '1', NULL, 'BAS', 0)");
@@ -974,7 +974,8 @@ class DefaultDataPopulator extends CRMEntity {
 		$this->db->query("INSERT INTO vtiger_field values($email_Tabid," . $this->db->getUniqueID("vtiger_field") . ",'to_email','vtiger_emaildetails',1,8,'saved_toid','To',1,2,'',100,2,$blockid,1,'V~M',3,NULL,'BAS',0)");
 		$this->db->query("INSERT INTO vtiger_field values($email_Tabid," . $this->db->getUniqueID("vtiger_field") . ",'cc_email','vtiger_emaildetails',1,8,'ccmail','CC',1,2,'',1000,3,$blockid,1,'V~O',3,NULL,'BAS',0)");
 		$this->db->query("INSERT INTO vtiger_field values($email_Tabid," . $this->db->getUniqueID("vtiger_field") . ",'bcc_email','vtiger_emaildetails',1,8,'bccmail','BCC' ,1,2,'',1000,4,$blockid,1,'V~O',3,NULL,'BAS',0)");
-		$this->db->query("INSERT INTO vtiger_field values($email_Tabid," . $this->db->getUniqueID("vtiger_field") . ",'idlists','vtiger_emaildetails',1,357,'parent_id','Parent ID' ,1,2,'',1000,5,$blockid,1,'V~O',3,NULL,'BAS',0)");
+		$this->db->query("INSERT INTO vtiger_field values($email_Tabid," . $this->db->getUniqueID("vtiger_field") . ",'idlists',
+'vtiger_emaildetails',1,357,'parent_id','To' ,1,2,'',1000,5,$blockid,1,'V~O',3,NULL,'BAS',0)");
 		$this->db->query("INSERT INTO vtiger_field values($email_Tabid," . $this->db->getUniqueID("vtiger_field") . ",'email_flag','vtiger_emaildetails',1,16,'email_flag','Email Flag' ,1,2,'',1000,6,$blockid,3,'V~O',3,NULL,'BAS',0)");
 		//Emails fields ends
 		//The Entity Name for the modules are maintained in this table

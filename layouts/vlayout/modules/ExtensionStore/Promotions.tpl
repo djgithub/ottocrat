@@ -9,8 +9,8 @@
 *
 ********************************************************************************/
 -->*}
-{*strip}
-    <!--div class="banner-container">
+{strip}
+    <div class="banner-container">
         <div class="row-fluid"></div>
         <div class="banner">
             <ul class="bxslider">
@@ -28,5 +28,5 @@
                 {/foreach}
             </ul>
         </div>
-    </div-->
-{/strip*}
+    </div>
+{/strip}
